@@ -101,8 +101,8 @@ class DataFrame:
         plt.bar(range(len(unique_obs_semester)), unique_obs_semester.values(), align='center')
         plt.xticks(range(len(unique_obs_semester)), unique_obs_semester.keys(), rotation=45)
         plt.yticks(np.arange(0.0, 27.0, 3.0))
-        plt.xlabel('# of proposals')
-        plt.ylabel('Semester')
+        plt.xlabel('Semester')
+        plt.ylabel('# of proposals')
 
     def plot_years_hours(self):
         """Plot the time observed in each semester."""
