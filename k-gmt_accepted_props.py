@@ -146,7 +146,7 @@ class DataFrame:
 
         ax2 = plt.subplot2grid(shape=(1, 3), loc=(0, 1), colspan=2)
         device_counts.T.plot.bar(ax=ax2)
-        ax2.set_ylabel('% of props')
+        ax2.set_ylabel('# of props')
 
     def plot_year_device(self):
         year_device = defaultdict()
