@@ -157,6 +157,9 @@ class DataFrame:
         ax = plt.subplot()
         year_device.plot.bar(ax=ax)
 
+        ax.set_xlabel('Year')
+        ax.set_ylabel('# of props')
+
 
 def main(data_path: str, style: str, use_gpt: bool) -> None:
     try:
