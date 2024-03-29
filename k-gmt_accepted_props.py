@@ -66,7 +66,7 @@ class DataFrame:
         if use_gpt:
             subjects = []
             client = OpenAI(
-                api_key="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"  # Insert your API key
+                api_key=""  # Insert your API key
             )
             for title in tqdm(self.df['prop_title'], desc='Retrieving responses from GPT'):
                 sys_message = f"""
