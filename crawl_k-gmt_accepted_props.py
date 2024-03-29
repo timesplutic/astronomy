@@ -9,8 +9,6 @@ from openai import OpenAI
 from tqdm import tqdm
 from collections import defaultdict
 
-import matplotlib
-print(matplotlib.style.available)
 pd.set_option('max_colwidth', None)
 pd.set_option('display.max_rows', None)
 
@@ -32,8 +30,8 @@ class DataFrame:
             "prop_allocated",
             "prop_id",
             "prop_title",
-            # "obs_year",
-            # "prop_subject",
+            # "obs_year",       # To be added in the following codes
+            # "prop_subject",   # To be added in the following codes
         ])
         self._preprocess()
 
@@ -150,6 +148,15 @@ class DataFrame:
         device_counts.T.plot.bar(ax=ax2)
         ax2.set_ylabel('% of props')
 
+    def plot_year_device(self):
+        year_device = defaultdict()
+        for year in pd.unique(self.df['obs_year']):
+            year_device[year] = self.df[self.df['obs_year'] == year]['obs_tel'].value_counts()
+        year_device = pd.DataFrame(year_device).fillna(0).T
+        year_device.sort_index(inplace=True)
+        ax = plt.subplot()
+        year_device.plot.bar(ax=ax)
+
 
 def main(data_path: str, style: str, use_gpt: bool) -> None:
     try:
@@ -180,6 +187,10 @@ def main(data_path: str, style: str, use_gpt: bool) -> None:
     fig4 = plt.figure()
     df.plot_subject_device()
     fig4.tight_layout()
+
+    fig5 = plt.figure()
+    df.plot_year_device()
+    fig5.tight_layout()
 
     plt.show()
 
